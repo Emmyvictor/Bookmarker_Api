@@ -1,0 +1,21 @@
+paths:
+  /{short_url}:
+    get:
+      summary: Redirect to Real URL
+      parameters:
+        - name: short_url
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The short URL ID/code
+      responses:
+        '301':
+          description: Redirects permanently to the real URL
+          headers:
+            Location:
+              description: The target URL the short link resolves to
+              schema:
+                type: string
+        '404':
+          description: Record was not found (Short URL does not exist)
